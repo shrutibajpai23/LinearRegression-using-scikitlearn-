@@ -1,0 +1,25 @@
+import numpy as np
+import pandas as pd 
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+#generate synthetic data 
+np.random.seed(42)
+x=np.random.rand(100,1)*10 
+y=3*x+np.random.randn(100,1)*2
+
+#splitting the dataset 
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=42)
+
+#fit linear regression model
+model=LinearRegression()
+model.fit(x_train,y_train)
+
+#make predictions 
+y_pred=model.predict(x_test)
+
+#print coeffiecients 
+print("slope: ",model.coef_[0][0])
+print("intercept: ",model.intercept_[0])
+ 
